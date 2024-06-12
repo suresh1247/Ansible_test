@@ -1,0 +1,8 @@
+---
+- hosts: all
+  become: yes
+  become_methd: sudo
+  tasks:
+   - name: Get Uptime of server
+     shell: hostname;uptime
+     register: test
