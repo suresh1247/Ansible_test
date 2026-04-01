@@ -27,4 +27,12 @@ INVENTORY_PATH="/home/admin/ansible-automation-platform-containerized-setup-2.6-
 
 sed -i "s/RHEL-10.example.com/$NEW_HOSTNAME/g" $INVENTORY_PATH
 
+grep -q "^automationcontroller_hostnames=" $INVENTORY_PATH && \
+sed -i "s/^automationcontroller_hostnames=.*/automationcontroller_hostnames=$NEW_HOSTNAME/" $INVENTORY_PATH || \
+echo "automationcontroller_hostnames=$NEW_HOSTNAME" >> $INVENTORY_PATH
+
+echo "automationhub_hostnames=$NEW_HOSTNAME" >> $INVENTORY_PATH
+echo "automationgateway_hostnames=$NEW_HOSTNAME" >> $INVENTORY_PATH
+echo "automationeda_hostnames=$NEW_HOSTNAME" >> $INVENTORY_PATH
+
 su - admin -c "cd /home/admin/ansible-automation-platform-containerized-setup-2.6-6 && ansible-playbook -i inventory ansible.containerized_installer.install"
