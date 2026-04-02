@@ -31,4 +31,6 @@ INVENTORY_PATH="/home/admin/ansible-automation-platform-containerized-setup-2.6-
 
 sed -i "s/RHEL-10.example.com/$NEW_HOSTNAME/g" $INVENTORY_PATH
 
+echo "deprovision_nodes=false" >> $INVENTORY_PATH
+echo "automationcontroller_deprovision_instances=false" >> $INVENTORY_PATH
 su - admin -c "cd /home/admin/ansible-automation-platform-containerized-setup-2.6-6 && ansible-playbook -i inventory ansible.containerized_installer.install"
