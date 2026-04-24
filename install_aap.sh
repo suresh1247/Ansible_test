@@ -27,10 +27,10 @@ systemctl enable firewalld
 su - admin -c "cd /home/admin && wget $3 -O aap.tar.gz"
 su - admin -c "cd /home/admin && tar -xvzf aap.tar.gz"
 
-INVENTORY_PATH="/home/admin/ansible-automation-platform-containerized-setup-2.6-6/inventory"
+INVENTORY_PATH="/home/admin/ansible-automation-platform-containerized-setup-2.6-7/inventory"
 
 sed -i "s/RHEL-10.example.com/$NEW_HOSTNAME/g" $INVENTORY_PATH
 
 echo "deprovision_nodes=false" >> $INVENTORY_PATH
 echo "automationcontroller_deprovision_instances=false" >> $INVENTORY_PATH
-su - admin -c "cd /home/admin/ansible-automation-platform-containerized-setup-2.6-6 && ansible-playbook -i inventory ansible.containerized_installer.install"
+su - admin -c "cd /home/admin/ansible-automation-platform-containerized-setup-2.6-7 && ansible-playbook -i inventory ansible.containerized_installer.install"
